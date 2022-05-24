@@ -17,11 +17,8 @@ Config = {
 		Max = 100,
 		Interval = 5,
 	},
-	UseModifier = false,
 	Keys = {
-		Modifier = 21, -- INPUT_SPRINT, Left Shift
 		Boost = 21, -- INPUT_SPRINT, Left Shift
-		Teleport = 37, -- INPUT_SELECT_WEAPON, Tab
 		SlowDown = 44, -- INPUT_COVER, Q
 		SpeedUp = 38, -- INPUT_PICKUP, E
 		SwitchMode = 25, -- INPUT_AIM, right click
@@ -95,12 +92,8 @@ function stopCam(teleport)
 			NetworkConcealPlayer(player, false, false)
 		end
 
-		if teleport then
-			RenderScriptCams(false, false, 0, false, false, false)
-		else
-			local time = math.floor(#( GetCamCoord(cam) - GetEntityCoords(PlayerPedId())))
-			RenderScriptCams(false, true, time, false, false, false)
-		end
+		local time = math.floor(#( GetCamCoord(cam) - GetEntityCoords(PlayerPedId())))
+		RenderScriptCams(false, true, time, false, false, false)
 		DestroyCam(getCam(), false)
 		cam = nil
 
@@ -630,17 +623,6 @@ function doCamFrame()
 						0, 0, -- texture
 						false -- projects on entities
 					)
-					if IsDisabledControlJustPressed(0, Config.Keys.Teleport) then
-						if #(hitCoords - ZERO) > 0.25 then
-							stopCam(true)
-							Citizen.Wait(0)
-							local playerPed = PlayerPedId()
-							SetEntityCoords(playerPed, hitCoords, false, false, false, true)
-							SetEntityHeading(playerPed, rotation.z)
-							SetGameplayCamRelativeHeading(0.0)
-							SetGameplayCamRelativePitch(rotation.x, 1.0)
-						end
-					end
 				end
 			end
 		end
