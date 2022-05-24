@@ -24,4 +24,4 @@ Printed data will be in `resources/data.txt`
   SPACE and LEFT CTRL for going up or down.
 ```
 
-If you want to change control keys, go to `qb-adminmenu > cam.lua.`
+If you want to change control keys, go to `qb-adminmenu > client > cam.lua.`
