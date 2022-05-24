@@ -156,10 +156,9 @@ function PerformanceUpgradeVehicle(vehicle, customWheels)
     customWheels = customWheels or false
     local max
     if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
-        SetVehicleModKit(vehicle, 0)
+        SetVehicleModKit(vehicle, 0) -- To work for every vehicle
         for _, modType in ipairs(performanceModIndices) do
             max = GetNumVehicleMods(vehicle, modType) - 1
-            print(max)
             SetVehicleMod(vehicle, modType, max, customWheels)
         end
         ToggleVehicleMod(vehicle, 18, true) -- Turbo
